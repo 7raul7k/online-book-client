@@ -1,3 +1,7 @@
+
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
+
 *{
   box-sizing: border-box;
 }
@@ -32,8 +36,8 @@ body{
   align-items: center;
 
   border: 2px solid black;
-  width: 39%;
-  height: 50%;
+  width: 30%;
+  height: 80%;
   background-color: rgb(122, 235, 235,0.9);
   margin-bottom: 10px;
 
@@ -87,8 +91,8 @@ section > p{
   justify-items: center;
 
 
-  width: 90vh;
-  height: 100%;
+  width: 99vh;
+  height: 50%;
 
 
 
@@ -165,7 +169,7 @@ button{
 .container{
   display: flex;
   flex-direction: column;
-  height: 500px;
+  height: 580px;
   width: 500px;
 }
 

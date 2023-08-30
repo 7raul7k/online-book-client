@@ -17,6 +17,10 @@ export class BookService {
     return this.http.get<Book[]>(this.url + "/allBooks").pipe(catchError(this.handleError));
   }
 
+  addBook(book : Book):Observable<String>{
+    return this.http.post<String>(this.url + "/addBook",book).pipe(catchError(this.handleError));
+  }
+
   handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       console.error('An error occurred:', error.error.message);
