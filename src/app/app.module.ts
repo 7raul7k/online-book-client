@@ -5,16 +5,19 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import {HttpClientModule} from "@angular/common/http";
-import { NewBookComponent } from './components/new-book/new-book.component';
+
 import {FormsModule} from "@angular/forms";
 import {MessagesModule} from "primeng/messages";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { UpdateBookComponent } from './components/update-book/update-book.component';
+import {NewBookComponent} from "./components/new-book/new-book.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    NewBookComponent
+    NewBookComponent,
+    UpdateBookComponent
   ],
   imports: [
     BrowserModule,
