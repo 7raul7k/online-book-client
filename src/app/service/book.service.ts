@@ -29,6 +29,10 @@ export class BookService {
     return this.http.put<String>(this.url + "/updateBook",book).pipe(catchError(this.handleError));
   }
 
+  deleteBook(id : number):Observable<String>{
+    return this.http.delete<String>(this.url + `/deleteBook/${id}`).pipe(catchError(this.handleError));
+  }
+
   handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       console.error('An error occurred:', error.error.message);

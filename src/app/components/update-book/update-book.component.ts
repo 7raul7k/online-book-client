@@ -49,6 +49,17 @@ export class UpdateBookComponent implements OnDestroy, OnInit {
     });
   }
 
+  deleteBook() {
+    this.bookService.deleteBook(this.id).subscribe({
+      next: (data) => {
+        this.messages.push({ severity: 'success', summary: 'Success', detail: 'Book was deleted' })
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
+  }
+
   constructor(private bookService: BookService) {
 
   }
