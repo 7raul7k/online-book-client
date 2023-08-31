@@ -1,6 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {BookService} from "../../service/book.service";
 import {Message} from "primeng/api";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-new-book',
@@ -41,6 +42,8 @@ export class NewBookComponent implements OnInit,OnDestroy {
       this.bookService.addBook(book).subscribe({
         next: (data) => {
           this.messages.push({ severity: 'success', summary: 'Success', detail: 'Book was added' });
+
+          this.router.navigate(['/']);
         },
         error: (err) => {
           console.log(err);
@@ -65,7 +68,7 @@ if (this.yearValue == Number("")) {
 }
 
   }
-  constructor(private bookService: BookService) {
+  constructor(private bookService: BookService,private router: Router) {
 
   }
 }

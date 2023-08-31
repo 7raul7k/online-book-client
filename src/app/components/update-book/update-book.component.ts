@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Book} from "../../models/api/Book";
 import {BookService} from "../../service/book.service";
 import {Message} from "primeng/api";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-update-book',
@@ -30,11 +31,21 @@ export class UpdateBookComponent implements OnDestroy, OnInit {
       { severity: 'error', summary: 'Error', detail: 'Message Content' }
     ];
 
-    this.bookService.getBookById(this.id).subscribe({
-      next: (data) => {
-        this.book = data;
+    this.route.params.subscribe({
+      next: (params) => {
+this.id = params['id'];
+        this.bookService.getBookById(this.id).subscribe({
+          next: (data) => {
+            this.book = data;
+          },
+          error: (err) => {
+            console.log(err);
+          }
+        });
       }
     });
+
+
   }
 
   updateBook() {
@@ -49,19 +60,21 @@ export class UpdateBookComponent implements OnDestroy, OnInit {
     });
   }
 
-  deleteBook() {
-    this.bookService.deleteBook(this.id).subscribe({
-      next: (data) => {
-        this.messages.push({ severity: 'success', summary: 'Success', detail: 'Book was deleted' })
-      },
-      error: (err) => {
-        console.log(err);
-      }
-    });
+
+
+  constructor(private bookService: BookService,private router: Router,private route: ActivatedRoute) {
+
   }
 
-  constructor(private bookService: BookService) {
+  deleteBook() {
 
+    this.bookService.deleteBook(this.id).subscribe({
+      next: (data) => {
+        this.messages.push({ severity: 'success', summary: 'Success', detail: 'Book was deleted' });
+
+        this.router.navigate(['/']);
+      }
+    });
   }
 }
 

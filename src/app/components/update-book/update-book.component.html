@@ -29,11 +29,11 @@
 
   <div class="buttons-container">
 
-    <p>  <button class="cancel">Cancel</button> </p>
+    <p>  <button class="cancel" routerLink="/">Cancel</button> </p>
 
-    <p><button class="update-movie" (click)="" type="submit">Update Movie</button></p>
+    <p><button class="update-movie" (click)="updateBook()" type="submit">Update Movie</button></p>
 
-    <p><button class="delete-movie">Delete Movie</button></p>
+    <p><button class="delete-movie" (click)="deleteBook()">Delete Movie</button></p>
   </div>
 </div>
 
