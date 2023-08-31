@@ -1,7 +1,7 @@
 <header class="header-container">
 
   <ul class="nav-container">
-    <button class="create-button">Create button</button>
+    <button class="create-button" routerLink="/add">Create button</button>
   </ul>
 </header>
 
@@ -11,7 +11,7 @@
 
   <div class="card-container">
 
-    <section class="title-container">
+    <section class="title-container" (click)="navigateToUpdate(book)">
       <label for="title" id="title">Name</label>
       <h2 class="title">{{book.name}}</h2>
     </section>
