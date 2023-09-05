@@ -2,6 +2,8 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Book} from "../../models/api/Book";
 import {BookService} from "../../service/book.service";
 import {Router} from "@angular/router";
+import {LoadingState} from "../../models/LoadingState.enum";
+import {Subject} from "rxjs";
 
 @Component({
   selector: 'app-home',
@@ -11,6 +13,8 @@ import {Router} from "@angular/router";
 export class HomeComponent implements OnInit, OnDestroy {
 
    books: Book[] = [];
+
+   loadingState$: Subject<LoadingState> = this.bookService.loadingStateSubject$;
 
     ngOnDestroy(): void {
     }
@@ -23,12 +27,15 @@ export class HomeComponent implements OnInit, OnDestroy {
 
             this.books=data;
 
+            this.bookService.loadingStateSubject$.next(LoadingState.Success);
+
 
         },
         complete: () => {
 
         },
         error: () => {
+          this.bookService.loadingStateSubject$.next(LoadingState.Error);
 
         }
       });
@@ -43,4 +50,5 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.router.navigate(['/update', book.id]);
     }
 
+  protected readonly LoadingState = LoadingState;
 }

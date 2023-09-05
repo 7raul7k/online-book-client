@@ -7,27 +7,45 @@
 
 
 
-<div class="cards-container" *ngFor="let book of books">
+<div>
+  <h2> Loading State Example</h2>
 
-  <div class="card-container">
-
-    <section class="title-container" (click)="navigateToUpdate(book)">
-      <label for="title" id="title">Name</label>
-      <h2 class="title">{{book.name}}</h2>
-    </section>
-    <section class="rating-container">
-      <label for="rating" id="rating">Author</label>
-      <p class="rating"> {{book.author}}</p>
-    </section>
-    <section class="genre-container">
-      <label for="genre" id="genre">Genre:</label>
-      <p class="genre">{{book.genre}}</p>
-    </section>
-    <section class="year-container">
-      <label for="year" id="year">Year:</label>
-      <p class="year">{{book.year}}</p>
-    </section>
-
+  <div *ngIf="(loadingState$ | async) === LoadingState.Loading; else loadedState">
+    <p-progressSpinner></p-progressSpinner>
   </div>
 
+  <ng-template #loadedState>
+    <ng-container *ngIf="(loadingState$ | async) === LoadingState.Success; else errorState">
+      <div class="cards-container" *ngFor="let book of books">
+
+        <div class="card-container">
+
+          <section class="title-container" (click)="navigateToUpdate(book)">
+            <label for="title" id="title">Name</label>
+            <h2 class="title">{{book.name}}</h2>
+          </section>
+          <section class="rating-container">
+            <label for="rating" id="rating">Author</label>
+            <p class="rating"> {{book.author}}</p>
+          </section>
+          <section class="genre-container">
+            <label for="genre" id="genre">Genre:</label>
+            <p class="genre">{{book.genre}}</p>
+          </section>
+          <section class="year-container">
+            <label for="year" id="year">Year:</label>
+            <p class="year">{{book.year}}</p>
+          </section>
+
+        </div>
+
+      </div>
+    </ng-container>
+  </ng-template>
+
+    <ng-template #errorState>
+      <div class="error-container">
+        <p>There was an error loading the books</p>
+      </div>
+    </ng-template>
 </div>
