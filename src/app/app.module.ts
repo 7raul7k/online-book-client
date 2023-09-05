@@ -11,6 +11,7 @@ import {MessagesModule} from "primeng/messages";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { UpdateBookComponent } from './components/update-book/update-book.component';
 import {NewBookComponent} from "./components/new-book/new-book.component";
+import {ProgressSpinnerModule} from "primeng/progressspinner";
 
 @NgModule({
   declarations: [
@@ -19,14 +20,15 @@ import {NewBookComponent} from "./components/new-book/new-book.component";
     NewBookComponent,
     UpdateBookComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    FormsModule,
-    MessagesModule,
-    BrowserAnimationsModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        FormsModule,
+        MessagesModule,
+        BrowserAnimationsModule,
+        ProgressSpinnerModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
